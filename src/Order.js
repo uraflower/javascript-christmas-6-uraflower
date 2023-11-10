@@ -2,24 +2,23 @@ import COMMON from './constants/common.js';
 import { MENU, TYPE } from './constants/menu.js';
 import ERROR from './constants/message/error.js';
 import CustomError from './errors/CustomError.js';
-import { parse } from './utils/format.js';
+import { split } from './utils/format.js';
 import { isPositiveInteger } from './utils/validate.js';
 
 class Order {
   #order;
 
   constructor(order) {
-    const parsedOrder = this.#parseOrder(order);
-    console.log(parsedOrder);
-    this.#validate(parsedOrder);
+    const parsedOrder = this.#parse(order);
+    this.#validateAfterParsing(parsedOrder);
   }
 
-  #parseOrder(order) {
+  #parse(order) {
     const result = {};
-    const eachOrder = parse(order, COMMON.comma);
+    const eachOrder = split(order, COMMON.comma);
 
     eachOrder.forEach((menuWithNumber) => {
-      const [menu, number] = parse(menuWithNumber, COMMON.dash);
+      const [menu, number] = split(menuWithNumber, COMMON.dash);
       this.#validateDuplication(result, menu);
       result[menu] = number;
     });
@@ -33,7 +32,7 @@ class Order {
     }
   }
 
-  #validate(order) {
+  #validateAfterParsing(order) {
     this.#validateInvalidOrder(order);
     this.#validateDrinkOnlyOrder(order);
   }
@@ -50,6 +49,7 @@ class Order {
   #validateDrinkOnlyOrder(order) {
     const orderedMenus = Object.keys(order);
     const drinkOrders = orderedMenus.filter((menu) => MENU[menu].type === TYPE.drink);
+
     if (orderedMenus.length === drinkOrders.length) {
       throw new CustomError(ERROR.drinkOnlyOrder);
     }
