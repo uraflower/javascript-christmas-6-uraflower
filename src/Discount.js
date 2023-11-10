@@ -6,6 +6,14 @@ class Discount {
     const { min, max } = EVENT_DATE.period.christmasEvent;
     if (isInRange(date, min, max)) {
       return 1000 + (date - 1) * 100;
+    return 0;
+  }
+
+  discountSpecial(date) {
+    const { min, max } = EVENT_DATE.period.otherEvent;
+
+    if (date.isStarredDate() && isInRange(date, min, max)) {
+      return 1000;
     }
     return 0;
   }
