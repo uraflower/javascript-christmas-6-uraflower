@@ -1,12 +1,13 @@
 import { Console } from '@woowacourse/mission-utils';
+import OUTPUT from '../constants/message/output.js';
 
 const OutputView = {
   printMenu() {
-    Console.print('<주문 메뉴>');
+    Console.print(OUTPUT.title.order);
   },
 
   printBenefits(christmasDiscountedAmount) {
-    Console.print('\n<혜택 내역>');
+    Console.print(OUTPUT.title.benefit);
     this.printChristmasDiscount(christmasDiscountedAmount);
   },
 
