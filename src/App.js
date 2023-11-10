@@ -1,5 +1,9 @@
+import InputView from './View/InputView.js';
+
 class App {
-  async run() {}
+  async run() {
+    await InputView.readDate();
+  }
 }
 
 export default App;
