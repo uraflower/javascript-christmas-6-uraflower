@@ -33,7 +33,7 @@ class VisitDate {
     return this.#visitDate.getDate();
   }
 
-  isInRange(min, max) {
+  isDateInRange(min, max) {
     return isInRange(this.date, min, max);
   }
 
