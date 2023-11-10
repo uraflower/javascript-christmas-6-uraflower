@@ -5,6 +5,7 @@ import ERROR from './constants/message/error.js';
 import {
   isEmpty, isInRange, isInteger,
 } from './utils/validate.js';
+import DAY from './constants/date/day.js';
 
 class VisitDate {
   #visitDate;
@@ -34,6 +35,11 @@ class VisitDate {
 
   isInRange(min, max) {
     return isInRange(this.date, min, max);
+  }
+
+  isWeekend() {
+    const day = this.#visitDate.getDay();
+    return day === DAY.friday || day === DAY.saturday;
   }
 
   isStarredDate() {
