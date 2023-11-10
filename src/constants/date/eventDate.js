@@ -15,6 +15,7 @@ const EVENT_DATE = Object.freeze({
       max: 31,
     }),
   }),
+  starred: Object.freeze([3, 10, 17, 24, 25, 31]),
 });
 
 export default EVENT_DATE;

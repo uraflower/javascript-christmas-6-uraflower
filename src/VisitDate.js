@@ -26,6 +26,10 @@ class VisitDate extends Date {
       throw new CustomError(ERROR.invalidDate);
     }
   }
+
+  isStarredDate() {
+    return EVENT_DATE.starred.includes(this.getDate());
+  }
 }
 
 export default VisitDate;
