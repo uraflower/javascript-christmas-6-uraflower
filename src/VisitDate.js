@@ -1,3 +1,4 @@
+import CustomError from './errors/CustomError.js';
 import COMMON from './constants/common.js';
 import EVENT_DATE from './constants/date/eventDate.js';
 import ERROR from './constants/message/error.js';
@@ -20,7 +21,7 @@ class VisitDate extends Date {
       !isInteger(Number(date)) ||
       !isInRange(Number(date), EVENT_DATE.minDate, EVENT_DATE.maxDate)
     ) {
-      throw new Error(`${ERROR.prefix} ${ERROR.invalidDate}`);
+      throw new CustomError(ERROR.invalidDate);
     }
   }
 }
