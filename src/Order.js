@@ -1,5 +1,5 @@
 import COMMON from './constants/common.js';
-import { MENU } from './constants/menu.js';
+import { MENU, TYPE } from './constants/menu.js';
 import ERROR from './constants/message/error.js';
 import CustomError from './errors/CustomError.js';
 import { parse } from './utils/format.js';
@@ -34,13 +34,25 @@ class Order {
   }
 
   #validate(order) {
+    this.#validateInvalidOrder(order);
+    this.#validateDrinkOnlyOrder(order);
+  }
+
+  #validateInvalidOrder(order) {
     Object.entries(order).forEach(([menu, number]) => {
       if (!Object.hasOwn(MENU, menu) ||
-        !isPositiveInteger(number)
-      ) {
+        !isPositiveInteger(number)) {
         throw new CustomError(ERROR.invalidOrder);
       }
     });
+  }
+
+  #validateDrinkOnlyOrder(order) {
+    const orderedMenus = Object.keys(order);
+    const drinkOrders = orderedMenus.filter((menu) => MENU[menu].type === TYPE.drink);
+    if (orderedMenus.length === drinkOrders.length) {
+      throw new CustomError(ERROR.drinkOnlyOrder);
+    }
   }
 }
 
