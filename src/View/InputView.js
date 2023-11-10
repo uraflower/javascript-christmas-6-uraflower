@@ -6,6 +6,11 @@ const InputView = {
     const input = await Console.readLineAsync(INPUT.date);
     return input;
   },
+
+  async readOrder() {
+    const input = await Console.readLineAsync(INPUT.order);
+    return input;
+  },
 };
 
 export default InputView;
