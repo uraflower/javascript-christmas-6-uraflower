@@ -3,7 +3,7 @@ import COMMON from './constants/common.js';
 import EVENT_DATE from './constants/date/eventDate.js';
 import ERROR from './constants/message/error.js';
 import {
-  isEmpty, isInRange, isInteger, isIncludes,
+  isEmpty, isInRange, isInteger,
 } from './utils/validate.js';
 
 class VisitDate extends Date {
@@ -16,8 +16,8 @@ class VisitDate extends Date {
   #validateDate(date) {
     if (
       isEmpty(date) ||
-      isIncludes(date, COMMON.whitespace) ||
-      isIncludes(date, COMMON.dot) ||
+      date.includes(COMMON.whitespace) ||
+      date.includes(COMMON.dot) ||
       !isInteger(date) ||
       !isInRange(date, EVENT_DATE.minDate, EVENT_DATE.maxDate)
     ) {

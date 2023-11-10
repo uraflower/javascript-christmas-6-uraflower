@@ -4,13 +4,6 @@ function isEmpty(string) {
   return string === COMMON.empty;
 }
 
-function isIncludes(string, target) {
-  if (string.constructor === String) {
-    return string.includes(target);
-  }
-  return false;
-}
-
 function isInteger(number) {
   return Number.isInteger(Number(number));
 }
@@ -21,5 +14,5 @@ function isInRange(number, min, max) {
 }
 
 export {
-  isEmpty, isIncludes, isInteger, isInRange,
+  isEmpty, isInteger, isInRange,
 };
