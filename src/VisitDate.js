@@ -6,11 +6,12 @@ import {
   isEmpty, isInRange, isInteger,
 } from './utils/validate.js';
 
-class VisitDate extends Date {
+class VisitDate {
+  #visitDate;
+
   constructor(date) {
-    super(EVENT_DATE.year, EVENT_DATE.month);
     this.#validateDate(date);
-    this.setDate(date);
+    this.#visitDate = new Date(EVENT_DATE.year, EVENT_DATE.month, date);
   }
 
   #validateDate(date) {
@@ -25,6 +26,10 @@ class VisitDate extends Date {
     ) {
       throw new CustomError(ERROR.invalidDate);
     }
+  }
+
+  isInRange(min, max) {
+    return isInRange(this.#visitDate.getDate(), min, max);
   }
 
   isStarredDate() {
