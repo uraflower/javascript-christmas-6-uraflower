@@ -3,12 +3,14 @@ import { MENU } from './constants/menu.js';
 import ERROR from './constants/message/error.js';
 import CustomError from './errors/CustomError.js';
 import { parse } from './utils/format.js';
+import { isPositiveInteger } from './utils/validate.js';
 
 class Order {
   #order;
 
   constructor(order) {
     const parsedOrder = this.#parseOrder(order);
+    console.log(parsedOrder);
     this.#validate(parsedOrder);
   }
 
@@ -33,7 +35,9 @@ class Order {
 
   #validate(order) {
     Object.entries(order).forEach(([menu, number]) => {
-      if (!Object.hasOwn(MENU, menu)) {
+      if (!Object.hasOwn(MENU, menu) ||
+        !isPositiveInteger(number)
+      ) {
         throw new CustomError(ERROR.invalidOrder);
       }
     });

@@ -13,6 +13,17 @@ function isInRange(number, min, max) {
   return numericNumber >= min && numericNumber <= max;
 }
 
+function isPositiveInteger(number) {
+  return (
+    !isEmpty(number) &&
+    !number.includes(COMMON.whitespace) &&
+    !number.includes(COMMON.dot) &&
+    Number(number) > 0 &&
+    Number(number) <= Number.MAX_SAFE_INTEGER &&
+    isInteger(number)
+  );
+}
+
 export {
-  isEmpty, isInteger, isInRange,
+  isEmpty, isInteger, isPositiveInteger, isInRange,
 };
