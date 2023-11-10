@@ -1,4 +1,9 @@
+import COMMON from './constants/common.js';
 import EVENT_DATE from './constants/date/eventDate.js';
+import ERROR from './constants/message/error.js';
+import {
+  isEmpty, isInRange, isInteger, isIncludes,
+} from './utils/validate.js';
 
 class VisitDate extends Date {
   constructor(date) {
@@ -8,28 +13,15 @@ class VisitDate extends Date {
   }
 
   #validateDate(date) {
-    if (date.includes(' ') || date === '') {
-      throw new Error('[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.');
+    if (
+      isEmpty(date) ||
+      isIncludes(date, COMMON.whitespace) ||
+      isIncludes(date, COMMON.dot) ||
+      !isInteger(Number(date)) ||
+      !isInRange(Number(date), EVENT_DATE.minDate, EVENT_DATE.maxDate)
+    ) {
+      throw new Error(`${ERROR.prefix} ${ERROR.invalidDate}`);
     }
-
-    if (this.isIncludeDot(date)) {
-      throw new Error('[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.');
-    }
-
-    if (!Number.isInteger(Number(date))) {
-      throw new Error('[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.');
-    }
-
-    if (!(Number(date) >= 1 && Number(date) <= 31)) {
-      throw new Error('[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.');
-    }
-  }
-
-  isIncludeDot(date) {
-    if (date.constructor === String) {
-      return date.includes('.');
-    }
-    return false;
   }
 }
 
