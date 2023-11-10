@@ -1,4 +1,5 @@
 import COMMON from './constants/common.js';
+import { MENU } from './constants/menu.js';
 import ERROR from './constants/message/error.js';
 import CustomError from './errors/CustomError.js';
 import { parse } from './utils/format.js';
@@ -8,6 +9,7 @@ class Order {
 
   constructor(order) {
     const parsedOrder = this.#parseOrder(order);
+    this.#validate(parsedOrder);
   }
 
   #parseOrder(order) {
@@ -29,6 +31,13 @@ class Order {
     }
   }
 
+  #validate(order) {
+    Object.entries(order).forEach(([menu, number]) => {
+      if (!Object.hasOwn(MENU, menu)) {
+        throw new CustomError(ERROR.invalidOrder);
+      }
+    });
+  }
 }
 
 export default Order;
