@@ -14,12 +14,14 @@ class VisitDate extends Date {
   }
 
   #validateDate(date) {
+    const { min, max } = EVENT_DATE.period.visitable;
+
     if (
       isEmpty(date) ||
       date.includes(COMMON.whitespace) ||
       date.includes(COMMON.dot) ||
       !isInteger(date) ||
-      !isInRange(date, EVENT_DATE.minDate, EVENT_DATE.maxDate)
+      !isInRange(date, min, max)
     ) {
       throw new CustomError(ERROR.invalidDate);
     }
