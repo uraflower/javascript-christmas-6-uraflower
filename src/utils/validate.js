@@ -1,5 +1,9 @@
 import COMMON from '../constants/common.js';
 
+function isUndefined(target) {
+  return target === undefined;
+}
+
 function isEmpty(string) {
   return string === COMMON.empty;
 }
@@ -15,6 +19,7 @@ function isInRange(number, min, max) {
 
 function isPositiveInteger(number) {
   return (
+    !isUndefined(number) &&
     !isEmpty(number) &&
     !number.includes(COMMON.whitespace) &&
     !number.includes(COMMON.dot) &&
@@ -25,5 +30,5 @@ function isPositiveInteger(number) {
 }
 
 export {
-  isEmpty, isInteger, isPositiveInteger, isInRange,
+  isUndefined, isEmpty, isInteger, isPositiveInteger, isInRange,
 };
