@@ -28,12 +28,16 @@ class VisitDate {
     }
   }
 
+  get date() {
+    return this.#visitDate.getDate();
+  }
+
   isInRange(min, max) {
-    return isInRange(this.#visitDate.getDate(), min, max);
+    return isInRange(this.date, min, max);
   }
 
   isStarredDate() {
-    return EVENT_DATE.starred.includes(this.getDate());
+    return EVENT_DATE.starred.includes(this.date);
   }
 }
 

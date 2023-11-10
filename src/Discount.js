@@ -7,7 +7,7 @@ class Discount {
     const { baseDiscount, offset, discountRatio } = DISCOUNT.christmas;
 
     if (date.isInRange(min, max)) {
-      return baseDiscount + (date - offset) * discountRatio;
+      return baseDiscount + (date.date - offset) * discountRatio;
     }
     return DISCOUNT.zero;
   }
