@@ -12,11 +12,12 @@ function isIncludes(string, target) {
 }
 
 function isInteger(number) {
-  return Number.isInteger(number);
+  return Number.isInteger(Number(number));
 }
 
 function isInRange(number, min, max) {
-  return number >= min && number <= max;
+  const numericNumber = Number(number);
+  return numericNumber >= min && numericNumber <= max;
 }
 
 export {

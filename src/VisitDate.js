@@ -18,8 +18,8 @@ class VisitDate extends Date {
       isEmpty(date) ||
       isIncludes(date, COMMON.whitespace) ||
       isIncludes(date, COMMON.dot) ||
-      !isInteger(Number(date)) ||
-      !isInRange(Number(date), EVENT_DATE.minDate, EVENT_DATE.maxDate)
+      !isInteger(date) ||
+      !isInRange(date, EVENT_DATE.minDate, EVENT_DATE.maxDate)
     ) {
       throw new CustomError(ERROR.invalidDate);
     }
