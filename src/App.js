@@ -3,6 +3,7 @@ import OrderManager from './OrderManager.js';
 import InputView from './View/InputView.js';
 import OutputView from './View/OutputView.js';
 import VisitDate from './VisitDate.js';
+import tryUntilValid from './utils/tryUntilValid.js';
 
 class App {
   #visitDate;
@@ -10,8 +11,8 @@ class App {
   #orderManager;
 
   async run() {
-    this.#visitDate = await this.#getVisitDate();
-    this.#orderManager = await this.#getOrderManager();
+    await this.#setVisitDate();
+    await this.#setOrderManager();
 
     OutputView.printOrder(this.#orderManager.order);
 
@@ -19,16 +20,18 @@ class App {
     OutputView.printBenefits(benefit);
   }
 
-  async #getVisitDate() {
-    const dateInput = await InputView.readDate();
-    const visitDate = new VisitDate(dateInput);
-    return visitDate;
+  async #setVisitDate() {
+    await tryUntilValid(async () => {
+      const dateInput = await InputView.readDate();
+      this.#visitDate = new VisitDate(dateInput);
+    });
   }
 
-  async #getOrderManager() {
-    const orderInput = await InputView.readOrder();
-    const orderManager = new OrderManager(orderInput);
-    return orderManager;
+  async #setOrderManager() {
+    await tryUntilValid(async () => {
+      const orderInput = await InputView.readOrder();
+      this.#orderManager = new OrderManager(orderInput);
+    });
   }
 }
 

@@ -32,6 +32,10 @@ const OutputView = {
     const formattedAmount = formatNumber(amount);
     return COMMON.dash + formattedAmount + UNIT.amount;
   },
+
+  printError(message) {
+    Console.print(message);
+  },
 };
 
 Object.freeze(OutputView);
