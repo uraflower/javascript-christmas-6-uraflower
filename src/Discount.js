@@ -13,23 +13,23 @@ class Discount {
     return DISCOUNT.zero;
   }
 
-  discountWeekday(date, order) {
+  discountWeekday(date, orderManager) {
     const { start, end } = EVENT_DATE.period.otherEvent;
     const { dessert } = TYPE;
 
     if (!date.isWeekend() && date.isDateInPeriod(start, end)) {
-      const cnt = order.countMenusTypeOf(dessert);
+      const cnt = orderManager.countMenusTypeOf(dessert);
       return cnt * DISCOUNT.weekdayRatio;
     }
     return DISCOUNT.zero;
   }
 
-  discountWeekend(date, order) {
+  discountWeekend(date, orderManager) {
     const { start, end } = EVENT_DATE.period.otherEvent;
     const { main } = TYPE;
 
     if (date.isWeekend() && date.isDateInPeriod(start, end)) {
-      const cnt = order.countMenusTypeOf(main);
+      const cnt = orderManager.countMenusTypeOf(main);
       return cnt * DISCOUNT.weekendRatio;
     }
     return DISCOUNT.zero;

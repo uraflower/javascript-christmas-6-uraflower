@@ -6,13 +6,17 @@ import CustomError from './errors/CustomError.js';
 import { split } from './utils/format.js';
 import { isPositiveInteger } from './utils/validate.js';
 
-class Order {
+class OrderManager {
   #order;
 
   constructor(order) {
     const parsedOrder = this.#parse(order);
     this.#validateAfterParsing(parsedOrder);
     this.#order = parsedOrder;
+  }
+
+  get order() {
+    return this.#order;
   }
 
   #parse(order) {
@@ -74,4 +78,4 @@ class Order {
   }
 }
 
-export default Order;
+export default OrderManager;
