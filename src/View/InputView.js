@@ -13,4 +13,6 @@ const InputView = {
   },
 };
 
+Object.freeze(InputView);
+
 export default InputView;

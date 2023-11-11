@@ -27,4 +27,6 @@ const OutputView = {
   },
 };
 
+Object.freeze(OutputView);
+
 export default OutputView;
