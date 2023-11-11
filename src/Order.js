@@ -12,6 +12,7 @@ class Order {
   constructor(order) {
     const parsedOrder = this.#parse(order);
     this.#validateAfterParsing(parsedOrder);
+    this.#order = parsedOrder;
   }
 
   #parse(order) {
@@ -60,6 +61,16 @@ class Order {
     if (sum > ORDER.maxMenuLimit) {
       throw new CustomError(ERROR.maxMenuLimit);
     }
+  }
+
+  countMenusTypeOf(type) {
+    const cnt = Object.entries(this.#order).reduce((acc, [menu, number]) => {
+      if (MENU[menu].type === type) {
+        return acc + number;
+      }
+      return acc + 0;
+    }, 0);
+    return cnt;
   }
 }
 
