@@ -1,3 +1,5 @@
+import BENEFIT from '../benefit.js';
+
 const OUTPUT = Object.freeze({
   guide: Object.freeze({
     greeting:
@@ -6,6 +8,15 @@ const OUTPUT = Object.freeze({
   title: Object.freeze({
     order: '\n<주문 메뉴>',
     benefit: '\n<혜택 내역>',
+  }),
+  content: Object.freeze({
+    benefit: Object.freeze({
+      [BENEFIT.christmas]: '크리스마스 디데이 할인:',
+      [BENEFIT.weekday]: '평일 할인:',
+      [BENEFIT.weekend]: '주말 할인:',
+      [BENEFIT.special]: '특별 할인:',
+      [BENEFIT.gift]: '증정 이벤트:',
+    }),
   }),
 });
 
