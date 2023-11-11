@@ -76,6 +76,14 @@ class OrderManager {
     }, 0);
     return cnt;
   }
+
+  getOriginalTotal() {
+    const total = Object.entries(this.#order).reduce(
+      (acc, [menu, number]) => acc + MENU[menu].price * number,
+      0,
+    );
+    return total;
+  }
 }
 
 export default OrderManager;
