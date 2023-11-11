@@ -12,27 +12,20 @@ const OutputView = {
     });
   },
 
-  printBenefits(christmasDiscountedAmount) {
+  printBenefits(benefit) {
     Console.print(OUTPUT.title.benefit);
-    this.printChristmasDiscount(christmasDiscountedAmount);
+    Object.entries(benefit).forEach(([type, amount]) => {
+      if (amount) {
+        this.printEachBenefit(type, amount);
+      }
+    });
   },
 
-  printChristmasDiscount(christmasDiscountedAmount) {
+  printEachBenefit(type, amount) {
     const { benefit } = OUTPUT.content;
-    const formattedAmount = this.formatBenefitAmount(christmasDiscountedAmount);
+    const formattedAmount = this.formatBenefitAmount(amount);
 
-    if (christmasDiscountedAmount) {
-      Console.print(`${benefit.christmas} ${formattedAmount}`);
-    }
-  },
-
-  printSpecialDiscount(specialDiscountedAmount) {
-    const { benefit } = OUTPUT.content;
-    const formattedAmount = this.formatBenefitAmount(specialDiscountedAmount);
-
-    if (specialDiscountedAmount) {
-      Console.print(`${benefit.special} ${formattedAmount}`);
-    }
+    Console.print(`${benefit[type]} ${formattedAmount}`);
   },
 
   formatBenefitAmount(amount) {
