@@ -20,37 +20,33 @@ class Order {
 
     eachOrder.forEach((menuWithNumber) => {
       const [menu, number] = split(menuWithNumber, COMMON.dash);
-      this.#validateDuplication(result, menu);
-      result[menu] = number;
+      this.#validateBeforeAssign(result, menu, number);
+      result[menu] = Number(number);
     });
 
     return result;
   }
 
-  #validateDuplication(order, menu) {
-    if (Object.hasOwn(order, menu)) {
+  #validateBeforeAssign(order, menu, number) {
+    if (
+      !isPositiveInteger(number) ||
+      !Object.hasOwn(MENU, menu) ||
+      Object.hasOwn(order, menu)
+    ) {
       throw new CustomError(ERROR.invalidOrder);
     }
   }
 
   #validateAfterParsing(order) {
-    this.#validateInvalidOrder(order);
     this.#validateDrinkOnlyOrder(order);
     this.#validateMaxMenuLimit(order);
   }
 
-  #validateInvalidOrder(order) {
-    Object.entries(order).forEach(([menu, number]) => {
-      if (!Object.hasOwn(MENU, menu) ||
-        !isPositiveInteger(number)) {
-        throw new CustomError(ERROR.invalidOrder);
-      }
-    });
-  }
-
   #validateDrinkOnlyOrder(order) {
     const orderedMenus = Object.keys(order);
-    const drinkOrders = orderedMenus.filter((menu) => MENU[menu].type === TYPE.drink);
+    const drinkOrders = orderedMenus.filter(
+      (menu) => MENU[menu].type === TYPE.drink,
+    );
 
     if (orderedMenus.length === drinkOrders.length) {
       throw new CustomError(ERROR.drinkOnlyOrder);
