@@ -16,7 +16,7 @@ class App {
 
     OutputView.printOrder(this.#orderManager.order);
 
-    const benefit = BenefitCalculator(this.#visitDate, this.#orderManager);
+    const benefit = BenefitCalculator.applyDiscount(this.#visitDate, this.#orderManager);
     OutputView.printBenefits(benefit);
   }
 
