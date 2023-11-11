@@ -16,14 +16,14 @@ class VisitDate {
   }
 
   #validateDate(date) {
-    const { min, max } = EVENT_DATE.period.visitable;
+    const { start, end } = EVENT_DATE.period.visitable;
 
     if (
       isEmpty(date) ||
       date.includes(COMMON.whitespace) ||
       date.includes(COMMON.dot) ||
       !isInteger(date) ||
-      !isInRange(date, min, max)
+      !isInRange(date, start, end)
     ) {
       throw new CustomError(ERROR.invalidDate);
     }
@@ -33,8 +33,8 @@ class VisitDate {
     return this.#visitDate.getDate();
   }
 
-  isDateInRange(min, max) {
-    return isInRange(this.date, min, max);
+  isDateInPeriod(start, end) {
+    return isInRange(this.date, start, end);
   }
 
   isWeekend() {
