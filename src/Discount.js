@@ -24,6 +24,17 @@ class Discount {
     return DISCOUNT.zero;
   }
 
+  discountWeekend(date, order) {
+    const { min, max } = EVENT_DATE.period.otherEvent;
+    const { main } = TYPE;
+
+    if (date.isWeekend() && date.isDateInRange(min, max)) {
+      const cnt = order.countMenusTypeOf(main);
+      return cnt * DISCOUNT.weekendRatio;
+    }
+    return DISCOUNT.zero;
+  }
+
   discountSpecial(date) {
     const { min, max } = EVENT_DATE.period.otherEvent;
 

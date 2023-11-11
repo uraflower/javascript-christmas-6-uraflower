@@ -6,6 +6,7 @@ const DISCOUNT = Object.freeze({
     discountRatio: 100,
   }),
   weekdayRatio: 2023,
+  weekendRatio: 2023,
   special: 1000,
 });
 
