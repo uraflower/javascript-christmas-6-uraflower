@@ -1,5 +1,6 @@
 import EVENT_DATE from './constants/date/eventDate.js';
 import DISCOUNT from './constants/discount.js';
+import { TYPE } from './constants/menu.js';
 
 class Discount {
   discountChristmas(date) {
@@ -8,6 +9,17 @@ class Discount {
 
     if (date.isDateInRange(min, max)) {
       return baseDiscount + (date.date - offset) * discountRatio;
+    }
+    return DISCOUNT.zero;
+  }
+
+  discountWeekday(date, order) {
+    const { min, max } = EVENT_DATE.period.otherEvent;
+    const { dessert } = TYPE;
+
+    if (!date.isWeekend() && date.isDateInRange(min, max)) {
+      const cnt = order.countMenusTypeOf(dessert);
+      return cnt * DISCOUNT.weekdayRatio;
     }
     return DISCOUNT.zero;
   }
