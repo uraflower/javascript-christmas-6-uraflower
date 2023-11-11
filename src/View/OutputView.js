@@ -2,8 +2,11 @@ import { Console } from '@woowacourse/mission-utils';
 import OUTPUT from '../constants/message/output.js';
 
 const OutputView = {
-  printMenu() {
+  printOrder(order) {
     Console.print(OUTPUT.title.order);
+    Object.entries(order).forEach(([menu, number]) => {
+      Console.print(`${menu} ${number}개`);
+    });
   },
 
   printBenefits(christmasDiscountedAmount) {
