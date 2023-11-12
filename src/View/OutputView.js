@@ -63,6 +63,13 @@ const OutputView = {
     Console.print(formattedAmount);
   },
 
+  printTotalAmountToPay(amount) {
+    Console.print(OUTPUT.title.totalAmountToPay);
+
+    const formattedAmount = formatMoney(amount);
+    Console.print(formattedAmount);
+  },
+
   printNone() {
     Console.print('없음');
   },

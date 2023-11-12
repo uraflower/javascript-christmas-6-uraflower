@@ -11,6 +11,7 @@ const OUTPUT = Object.freeze({
     giftMenu: '\n<증정 메뉴>',
     benefitDetails: '\n<혜택 내역>',
     totalAmountOfBenefit: '\n<총혜택 금액>',
+    totalAmountToPay: '\n<할인 후 예상 결제 금액>',
   }),
   content: Object.freeze({
     benefit: Object.freeze({

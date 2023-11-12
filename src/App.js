@@ -55,6 +55,7 @@ class App {
     OutputView.printBenefitDetails(this.#benefit);
     OutputView.printTotalAmountOfBenefit(this.#totalAmountOfBenefit);
     const totalAmountToPay = this.#totalAmountOfOrder - this.#discount.getTotalAmountOfDiscount();
+    OutputView.printTotalAmountToPay(totalAmountToPay);
   }
 
   #setTotalAmountOfOrder() {
