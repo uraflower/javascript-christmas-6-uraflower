@@ -1,5 +1,11 @@
+import UNIT from '../constants/unit.js';
+
 function formatNumber(number) {
   return number.toLocaleString('ko-kr');
+}
+
+function formatMoney(number) {
+  return formatNumber(number) + UNIT.amount;
 }
 
 function split(string, parser) {
@@ -7,4 +13,4 @@ function split(string, parser) {
   return array.map((element) => element.trim());
 }
 
-export { formatNumber, split };
+export { formatNumber, formatMoney, split };
