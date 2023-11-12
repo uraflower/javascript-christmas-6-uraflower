@@ -6,6 +6,7 @@ import tryUntilValid from './utils/tryUntilValid.js';
 import Gift from './Domain/Benefit/Gift.js';
 import Discount from './Domain/Benefit/Discount.js';
 import ORDER from './constants/order.js';
+import Badge from './Domain/Benefit/Badge.js';
 import BENEFIT from './constants/benefit.js';
 
 class App {
@@ -18,6 +19,8 @@ class App {
   #discount;
 
   #gift;
+
+  #badge;
 
   #totalAmountOfOrder;
 
@@ -56,6 +59,7 @@ class App {
     OutputView.printTotalAmountOfBenefit(this.#totalAmountOfBenefit);
     const totalAmountToPay = this.#totalAmountOfOrder - this.#discount.getTotalAmountOfDiscount();
     OutputView.printTotalAmountToPay(totalAmountToPay);
+    OutputView.printBadge(this.#badge);
   }
 
   #setTotalAmountOfOrder() {
@@ -72,6 +76,7 @@ class App {
     this.#gift = new Gift(this.#totalAmountOfOrder);
     this.#setBenefit(isEligibleForBenefit);
     this.#setTotalAmountOfBenefit();
+    this.#badge = Badge.getBadge(this.#totalAmountOfBenefit);
   }
 
   #setBenefit(isEligibleForBenefit) {
