@@ -4,8 +4,8 @@ import COMMON from '../constants/common.js';
 import { formatCount, formatMinusMoney, formatMoney } from '../utils/format.js';
 
 const OutputView = {
-  printOrder(order) {
-    Console.print(OUTPUT.title.order);
+  printOrderedMenu(order) {
+    Console.print(OUTPUT.title.orderedMenu);
 
     Object.entries(order).forEach(([menu, number]) => {
       const cnt = formatCount(number);
@@ -13,15 +13,15 @@ const OutputView = {
     });
   },
 
-  printOrderTotal(amount) {
-    Console.print(OUTPUT.title.totalOrder);
+  printTotalAmountOfOrder(amount) {
+    Console.print(OUTPUT.title.totalAmountOfOrder);
 
     const formattedAmount = formatMoney(amount);
     Console.print(formattedAmount);
   },
 
-  printBenefits(benefit) {
-    Console.print(OUTPUT.title.benefit);
+  printBenefitDetails(benefit) {
+    Console.print(OUTPUT.title.benefitDetails);
 
     Object.entries(benefit).forEach(([type, amount]) => {
       if (amount) {
@@ -37,8 +37,8 @@ const OutputView = {
     Console.print(benefit[type] + COMMON.whitespace + formattedAmount);
   },
 
-  printTotalBenefit(amount) {
-    Console.print(OUTPUT.title.totalBenefit);
+  printTotalAmountOfBenefit(amount) {
+    Console.print(OUTPUT.title.totalAmountOfBenefit);
 
     const formattedAmount = formatMinusMoney(amount);
     Console.print(formattedAmount);

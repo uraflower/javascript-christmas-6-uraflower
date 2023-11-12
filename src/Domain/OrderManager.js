@@ -77,7 +77,7 @@ class OrderManager {
     return cnt;
   }
 
-  getOriginalTotal() {
+  getTotalAmountOfOrder() {
     const total = Object.entries(this.#order).reduce(
       (acc, [menu, number]) => acc + MENU[menu].price * number,
       0,

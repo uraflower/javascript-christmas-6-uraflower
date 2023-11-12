@@ -14,13 +14,13 @@ class App {
     await this.#setVisitDate();
     await this.#setOrderManager();
 
-    OutputView.printOrder(this.#orderManager.order);
+    OutputView.printOrderedMenu(this.#orderManager.order);
 
     const benefit = BenefitCalculator.applyDiscount(this.#visitDate, this.#orderManager);
-    OutputView.printBenefits(benefit);
+    OutputView.printBenefitDetails(benefit);
 
     const total = BenefitCalculator.getBenefitTotal(benefit);
-    OutputView.printTotalBenefit(total);
+    OutputView.printTotalAmountOfBenefit(total);
   }
 
   async #setVisitDate() {
