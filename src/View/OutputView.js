@@ -36,6 +36,11 @@ const OutputView = {
   printBenefitDetails(benefit) {
     Console.print(OUTPUT.title.benefitDetails);
 
+    if (!benefit) {
+      this.printNone();
+      return;
+    }
+
     Object.entries(benefit).forEach(([type, amount]) => {
       if (amount) {
         this.printEachBenefit(type, amount);
