@@ -23,6 +23,11 @@ const OutputView = {
   printGiftMenu(gift) {
     Console.print(OUTPUT.title.giftMenu);
 
+    if (!gift) {
+      this.printNone();
+      return;
+    }
+
     const { menu, number } = gift;
     const cnt = formatCount(number);
     Console.print(menu + COMMON.whitespace + cnt);
@@ -50,6 +55,10 @@ const OutputView = {
 
     const formattedAmount = formatMinusMoney(amount);
     Console.print(formattedAmount);
+  },
+
+  printNone() {
+    Console.print('없음');
   },
 
   printError(message) {
