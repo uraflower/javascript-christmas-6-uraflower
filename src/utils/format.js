@@ -1,11 +1,18 @@
+import COMMON from '../constants/common.js';
 import UNIT from '../constants/unit.js';
 
-function formatNumber(number) {
-  return number.toLocaleString('ko-kr');
+function formatCount(number) {
+  return number + UNIT.count;
 }
 
-function formatMoney(number) {
-  return formatNumber(number) + UNIT.amount;
+function formatMoney(amount) {
+  const formattedAmount = amount.toLocaleString('ko-kr');
+  return formattedAmount + UNIT.money;
+}
+
+function formatMinusMoney(amount) {
+  const formattedAmount = formatMoney(amount);
+  return COMMON.dash + formattedAmount;
 }
 
 function split(string, parser) {
@@ -13,4 +20,6 @@ function split(string, parser) {
   return array.map((element) => element.trim());
 }
 
-export { formatNumber, formatMoney, split };
+export {
+  formatCount, formatMoney, formatMinusMoney, split,
+};
