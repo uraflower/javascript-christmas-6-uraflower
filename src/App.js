@@ -9,12 +9,27 @@ class App {
 
   #orderManager;
 
+  #totalAmountOfOrder;
+
   async run() {
+    // 방문 날짜 및 메뉴 주문 받기
+    await this.#doBeforeCalculateBenefit();
+  }
+
+  async #doBeforeCalculateBenefit() {
     await this.#setVisitDate();
     await this.#setOrderManager();
+    this.#setTotalAmountOfOrder();
+    this.#printBeforeCalculateBenefit();
+  }
 
+  #printBeforeCalculateBenefit() {
     OutputView.printOrderedMenu(this.#orderManager.order);
+    OutputView.printTotalAmountOfOrder(this.#totalAmountOfOrder);
+  }
 
+  #setTotalAmountOfOrder() {
+    this.#totalAmountOfOrder = this.#orderManager.getTotalAmountOfOrder();
 
   }
 
