@@ -8,6 +8,7 @@ const OUTPUT = Object.freeze({
   title: Object.freeze({
     orderedMenu: '\n<주문 메뉴>',
     totalAmountOfOrder: '\n<할인 전 총주문 금액>',
+    giftMenu: '\n<증정 메뉴>',
     benefitDetails: '\n<혜택 내역>',
     totalAmountOfBenefit: '\n<총혜택 금액>',
   }),

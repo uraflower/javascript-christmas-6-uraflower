@@ -20,6 +20,14 @@ const OutputView = {
     Console.print(formattedAmount);
   },
 
+  printGiftMenu(gift) {
+    Console.print(OUTPUT.title.giftMenu);
+
+    const { menu, number } = gift;
+    const cnt = formatCount(number);
+    Console.print(menu + COMMON.whitespace + cnt);
+  },
+
   printBenefitDetails(benefit) {
     Console.print(OUTPUT.title.benefitDetails);
 
