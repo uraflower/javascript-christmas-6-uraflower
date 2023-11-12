@@ -18,6 +18,8 @@ class App {
 
     const benefit = BenefitCalculator.applyDiscount(this.#visitDate, this.#orderManager);
     OutputView.printBenefits(benefit);
+
+    const total = BenefitCalculator.getBenefitTotal(benefit);
   }
 
   async #setVisitDate() {

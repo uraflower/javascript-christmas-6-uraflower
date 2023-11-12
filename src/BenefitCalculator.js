@@ -13,6 +13,14 @@ const BenefitCalculator = {
 
     return benefit;
   },
+
+  getBenefitTotal(benefit) {
+    const total = Object.values(benefit).reduce(
+      (acc, amount) => acc + amount,
+      0,
+    );
+    return total;
+  },
 };
 
 Object.freeze(BenefitCalculator);
