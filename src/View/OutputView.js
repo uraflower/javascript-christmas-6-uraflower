@@ -28,6 +28,12 @@ const OutputView = {
     Console.print(`${benefit[type]} ${formattedAmount}`);
   },
 
+  printTotalBenefit(amount) {
+    Console.print(OUTPUT.title.totalBenefit);
+    const formattedAmount = this.formatBenefitAmount(amount);
+    Console.print(formattedAmount);
+  },
+
   formatBenefitAmount(amount) {
     const formattedAmount = formatNumber(amount);
     return COMMON.dash + formattedAmount + UNIT.amount;

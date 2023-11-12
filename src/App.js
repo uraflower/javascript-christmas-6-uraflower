@@ -20,6 +20,7 @@ class App {
     OutputView.printBenefits(benefit);
 
     const total = BenefitCalculator.getBenefitTotal(benefit);
+    OutputView.printTotalBenefit(total);
   }
 
   async #setVisitDate() {
