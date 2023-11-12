@@ -19,6 +19,15 @@ class Gift {
 
     return matchedGift;
   }
+
+  getGiftMenu() {
+    if (!this.#gift) {
+      return null;
+    }
+
+    const { gift, number } = this.#gift;
+    return { menu: gift.name, number };
+  }
 }
 
 export default Gift;
