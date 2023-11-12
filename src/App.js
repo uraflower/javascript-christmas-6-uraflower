@@ -6,11 +6,14 @@ import tryUntilValid from './utils/tryUntilValid.js';
 import Gift from './Domain/Benefit/Gift.js';
 import Discount from './Domain/Benefit/Discount.js';
 import ORDER from './constants/order.js';
+import BENEFIT from './constants/benefit.js';
 
 class App {
   #visitDate;
 
   #orderManager;
+
+  #benefit;
 
   #discount;
 
@@ -20,12 +23,19 @@ class App {
 
   #totalAmountOfBenefit;
 
+  constructor() {
+    this.#benefit = null;
+  }
+
   async run() {
     // 방문 날짜 및 메뉴 주문 받기
     await this.#doBeforeCalculateBenefit();
 
     // 혜택 적용
     this.#applyBenefit();
+
+    // 혜택 적용 후 출력들
+    this.#printAfterCalculateBenefit();
   }
 
   async #doBeforeCalculateBenefit() {
@@ -38,6 +48,20 @@ class App {
   #printBeforeCalculateBenefit() {
     OutputView.printOrderedMenu(this.#orderManager.order);
     OutputView.printTotalAmountOfOrder(this.#totalAmountOfOrder);
+  }
+
+  #printAfterCalculateBenefit() {
+    OutputView.printGiftMenu(this.#gift.getGiftMenu());
+
+    if (this.#isEligibleForBenefit()) {
+      this.#benefit = {
+        ...this.#discount.detail,
+        [BENEFIT.gift]: this.#gift.getTotalAmountOfGift(),
+      };
+    }
+    OutputView.printBenefitDetails(this.#benefit);
+
+    OutputView.printTotalAmountOfBenefit(this.#totalAmountOfBenefit);
   }
 
   #setTotalAmountOfOrder() {
