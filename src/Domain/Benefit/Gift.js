@@ -28,6 +28,15 @@ class Gift {
     const { gift, number } = this.#gift;
     return { menu: gift.name, number };
   }
+
+  getTotalAmountOfGift() {
+    if (!this.#gift) {
+      return 0;
+    }
+
+    const { gift, number } = this.#gift;
+    return gift.price * number;
+  }
 }
 
 export default Gift;
