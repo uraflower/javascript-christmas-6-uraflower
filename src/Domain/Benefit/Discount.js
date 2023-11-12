@@ -1,6 +1,6 @@
-import EVENT_DATE from './constants/date/eventDate.js';
-import DISCOUNT from './constants/discount.js';
-import { TYPE } from './constants/menu.js';
+import EVENT_DATE from '../../constants/date/eventDate.js';
+import DISCOUNT from '../../constants/discount.js';
+import { TYPE } from '../../constants/menu.js';
 
 class Discount {
   discountChristmas(date) {

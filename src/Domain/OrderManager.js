@@ -1,10 +1,10 @@
-import COMMON from './constants/common.js';
-import { MENU, TYPE } from './constants/menu.js';
-import ERROR from './constants/message/error.js';
-import ORDER from './constants/order.js';
-import CustomError from './errors/CustomError.js';
-import { split } from './utils/format.js';
-import { isPositiveInteger } from './utils/validate.js';
+import COMMON from '../constants/common.js';
+import { MENU, TYPE } from '../constants/menu.js';
+import ERROR from '../constants/message/error.js';
+import ORDER from '../constants/order.js';
+import CustomError from '../errors/CustomError.js';
+import { split } from '../utils/format.js';
+import { isPositiveInteger } from '../utils/validate.js';
 
 class OrderManager {
   #order;

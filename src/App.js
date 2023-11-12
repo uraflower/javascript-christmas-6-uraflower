@@ -1,8 +1,8 @@
-import BenefitCalculator from './BenefitCalculator.js';
-import OrderManager from './OrderManager.js';
+import BenefitCalculator from './Domain/Benefit/BenefitCalculator.js';
+import OrderManager from './Domain/OrderManager.js';
 import InputView from './View/InputView.js';
 import OutputView from './View/OutputView.js';
-import VisitDate from './VisitDate.js';
+import VisitDate from './Domain/VisitDate.js';
 import tryUntilValid from './utils/tryUntilValid.js';
 
 class App {

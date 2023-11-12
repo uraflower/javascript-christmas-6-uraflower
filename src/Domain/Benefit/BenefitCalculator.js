@@ -1,5 +1,5 @@
 import Discount from './Discount.js';
-import BENEFIT from './constants/benefit.js';
+import BENEFIT from '../../constants/benefit.js';
 
 const BenefitCalculator = {
   applyDiscount(visitDate, orderManager) {
