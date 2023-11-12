@@ -58,7 +58,8 @@ const OutputView = {
   printTotalAmountOfBenefit(amount) {
     Console.print(OUTPUT.title.totalAmountOfBenefit);
 
-    const formattedAmount = formatMinusMoney(amount);
+    const formattedAmount = amount === 0 ?
+      formatMoney(amount) : formatMinusMoney(amount);
     Console.print(formattedAmount);
   },
 
