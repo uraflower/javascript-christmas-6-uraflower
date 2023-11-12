@@ -73,6 +73,11 @@ const OutputView = {
   printBadge(badge) {
     Console.print(OUTPUT.title.badge);
 
+    if (!badge) {
+      this.printNone();
+      return;
+    }
+
     Console.print(badge);
   },
 
