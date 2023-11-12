@@ -70,6 +70,12 @@ const OutputView = {
     Console.print(formattedAmount);
   },
 
+  printBadge(badge) {
+    Console.print(OUTPUT.title.badge);
+
+    Console.print(badge);
+  },
+
   printNone() {
     Console.print('없음');
   },
