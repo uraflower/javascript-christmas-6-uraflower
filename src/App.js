@@ -54,6 +54,7 @@ class App {
     OutputView.printGiftMenu(this.#gift.getGiftMenu());
     OutputView.printBenefitDetails(this.#benefit);
     OutputView.printTotalAmountOfBenefit(this.#totalAmountOfBenefit);
+    const totalAmountToPay = this.#totalAmountOfOrder - this.#discount.getTotalAmountOfDiscount();
   }
 
   #setTotalAmountOfOrder() {
