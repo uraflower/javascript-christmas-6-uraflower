@@ -52,15 +52,7 @@ class App {
 
   #printAfterCalculateBenefit() {
     OutputView.printGiftMenu(this.#gift.getGiftMenu());
-
-    if (this.#isEligibleForBenefit()) {
-      this.#benefit = {
-        ...this.#discount.detail,
-        [BENEFIT.gift]: this.#gift.getTotalAmountOfGift(),
-      };
-    }
     OutputView.printBenefitDetails(this.#benefit);
-
     OutputView.printTotalAmountOfBenefit(this.#totalAmountOfBenefit);
   }
 
@@ -76,7 +68,21 @@ class App {
     const isEligibleForBenefit = this.#isEligibleForBenefit();
     this.#discount = new Discount(isEligibleForBenefit, this.#visitDate, this.#orderManager);
     this.#gift = new Gift(this.#totalAmountOfOrder);
+    this.#setBenefit(isEligibleForBenefit);
     this.#setTotalAmountOfBenefit();
+  }
+
+  #setBenefit(isEligibleForBenefit) {
+    let benefit = null;
+
+    if (isEligibleForBenefit) {
+      benefit = {
+        ...this.#discount.detail,
+        [BENEFIT.gift]: this.#gift.getTotalAmountOfGift(),
+      };
+    }
+
+    this.#benefit = benefit;
   }
 
   #setTotalAmountOfBenefit() {
