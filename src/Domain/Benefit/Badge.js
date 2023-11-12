@@ -2,16 +2,11 @@ import BADGE_CONDITIONS from '../../constants/badgeConditions.js';
 
 const Badge = {
   getBadge(amount) {
-    let matchedBadge = null;
+    const matchedCondition = BADGE_CONDITIONS.find(
+      (currentCondition) => amount >= currentCondition.minAmountForBadge,
+    );
 
-    BADGE_CONDITIONS.forEach((currentCondition) => {
-      if (amount >= currentCondition.minAmountForBadge) {
-        const { badge } = currentCondition;
-        matchedBadge = badge;
-      }
-    });
-
-    return matchedBadge;
+    return matchedCondition ? matchedCondition.badge : null;
   },
 };
 
