@@ -37,7 +37,7 @@ class Discount {
     return DISCOUNT.zero;
   }
 
-  discountWeekday(date, orderManager) {
+  #discountWeekday(date, orderManager) {
     const { start, end } = EVENT_DATE.period.otherEvent;
     const { dessert } = TYPE;
 
@@ -48,7 +48,7 @@ class Discount {
     return DISCOUNT.zero;
   }
 
-  discountWeekend(date, orderManager) {
+  #discountWeekend(date, orderManager) {
     const { start, end } = EVENT_DATE.period.otherEvent;
     const { main } = TYPE;
 
@@ -59,7 +59,7 @@ class Discount {
     return DISCOUNT.zero;
   }
 
-  discountSpecial(date) {
+  #discountSpecial(date) {
     const { start, end } = EVENT_DATE.period.otherEvent;
 
     if (date.isStarredDate() && date.isDateInPeriod(start, end)) {
