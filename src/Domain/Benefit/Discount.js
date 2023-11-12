@@ -1,9 +1,33 @@
+import BENEFIT from '../../constants/benefit.js';
 import EVENT_DATE from '../../constants/date/eventDate.js';
 import DISCOUNT from '../../constants/discount.js';
 import { TYPE } from '../../constants/menu.js';
 
 class Discount {
-  discountChristmas(date) {
+  #detail;
+
+  constructor(isEligibleForDiscount, visitDate, orderManager) {
+    this.#detail = this.#setDiscount(isEligibleForDiscount, visitDate, orderManager);
+  }
+
+  get detail() {
+    return this.#detail;
+  }
+
+  #setDiscount(isEligibleForDiscount, visitDate, orderManager) {
+    const detail = {};
+
+    if (isEligibleForDiscount) {
+      detail[BENEFIT.christmas] = this.#discountChristmas(visitDate);
+      detail[BENEFIT.weekday] = this.#discountWeekday(visitDate, orderManager);
+      detail[BENEFIT.weekend] = this.#discountWeekend(visitDate, orderManager);
+      detail[BENEFIT.special] = this.#discountSpecial(visitDate);
+    }
+
+    return detail;
+  }
+
+  #discountChristmas(date) {
     const { start, end } = EVENT_DATE.period.christmasEvent;
     const { baseDiscount, offset, discountRatio } = DISCOUNT.christmas;
 

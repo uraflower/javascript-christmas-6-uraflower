@@ -1,4 +1,3 @@
-import BenefitCalculator from './Domain/Benefit/BenefitCalculator.js';
 import OrderManager from './Domain/OrderManager.js';
 import InputView from './View/InputView.js';
 import OutputView from './View/OutputView.js';
@@ -16,11 +15,7 @@ class App {
 
     OutputView.printOrderedMenu(this.#orderManager.order);
 
-    const benefit = BenefitCalculator.applyDiscount(this.#visitDate, this.#orderManager);
-    OutputView.printBenefitDetails(benefit);
 
-    const total = BenefitCalculator.getBenefitTotal(benefit);
-    OutputView.printTotalAmountOfBenefit(total);
   }
 
   async #setVisitDate() {
