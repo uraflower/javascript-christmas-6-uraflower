@@ -67,6 +67,14 @@ class Discount {
     }
     return DISCOUNT.zero;
   }
+
+  getTotalAmountOfDiscount() {
+    const total = Object.values(this.#detail).reduce(
+      (acc, amount) => acc + amount,
+      0,
+    );
+    return total;
+  }
 }
 
 export default Discount;
