@@ -1,19 +1,24 @@
 import GIFT_CONDITIONS from '../../constants/giftConditions.js';
 
-const Gift = {
-  getGift(orderAmount) {
+class Gift {
+  #gift;
+
+  constructor(totalAmountOfOrder) {
+    this.#gift = this.#getGift(totalAmountOfOrder);
+  }
+
+  #getGift(amount) {
     let matchedGift = null;
 
     GIFT_CONDITIONS.forEach((currentCondition) => {
-      if (orderAmount >= currentCondition.minAmountForGift) {
+      if (amount >= currentCondition.minAmountForGift) {
         const { gift, number } = currentCondition;
-        matchedGift = [gift, number];
+        matchedGift = { gift, number };
       }
     });
 
     return matchedGift;
-  },
-};
+  }
+}
 
-Object.freeze(Gift);
 export default Gift;
