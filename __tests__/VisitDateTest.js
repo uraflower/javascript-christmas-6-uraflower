@@ -44,6 +44,23 @@ describe('방문 날짜 테스트', () => {
         );
       });
     });
+
+    describe('방문 날짜의 날이 26일이면', () => {
+      const date = '26';
+      const visitDate = new VisitDate(date);
+
+      test.each([
+        ['1', '31', '있다', true],
+        ['1', '25', '있지 않다', false],
+      ])(
+        '방문 날짜의 날은 %d일~%d일 사이에 %s',
+        (startDate, endDate, _, expected) => {
+          const result = visitDate.isDateInPeriod(startDate, endDate);
+
+          expect(result).toBe(expected);
+        },
+      );
+    });
   });
 
   describe('예외 테스트', () => {
