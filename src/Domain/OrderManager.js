@@ -19,6 +19,27 @@ class OrderManager {
     return this.#order;
   }
 
+  countMenusTypeOf(type) {
+    const cnt = Object.entries(this.#order).reduce((acc, [menu, number]) => {
+      if (MENU[menu].type === type) {
+        return acc + number;
+      }
+
+      return acc + 0;
+    }, 0);
+
+    return cnt;
+  }
+
+  getTotalAmountOfOrder() {
+    const total = Object.entries(this.#order).reduce(
+      (acc, [menu, number]) => acc + MENU[menu].price * number,
+      0,
+    );
+
+    return total;
+  }
+
   #parse(order) {
     const result = {};
     const eachOrder = split(order, COMMON.comma);
@@ -65,24 +86,6 @@ class OrderManager {
     if (sum > ORDER.maxMenuLimit) {
       throw new CustomError(ERROR.maxMenuLimit);
     }
-  }
-
-  countMenusTypeOf(type) {
-    const cnt = Object.entries(this.#order).reduce((acc, [menu, number]) => {
-      if (MENU[menu].type === type) {
-        return acc + number;
-      }
-      return acc + 0;
-    }, 0);
-    return cnt;
-  }
-
-  getTotalAmountOfOrder() {
-    const total = Object.entries(this.#order).reduce(
-      (acc, [menu, number]) => acc + MENU[menu].price * number,
-      0,
-    );
-    return total;
   }
 }
 
