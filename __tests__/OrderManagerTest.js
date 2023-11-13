@@ -15,6 +15,21 @@ describe('기능 테스트', () => {
 
     expect(result).toStrictEqual(expected);
   });
+
+  describe('특정 타입 메뉴 개수 세기 테스트', () => {
+    test.each([
+      ['타파스-1,바비큐립-2,초코케이크-3,샴페인-4', 'appetizer', 1],
+      ['타파스-1,바비큐립-2,초코케이크-3,샴페인-4', 'main', 2],
+      ['타파스-1,바비큐립-2,초코케이크-3,샴페인-4', 'dessert', 3],
+      ['타파스-1,바비큐립-2,초코케이크-3,샴페인-4', 'drink', 4],
+    ])('"%s"을 주문하면 "%s"의 개수는 %d개이다', (input, type, expected) => {
+      const orderManager = new OrderManager(input);
+
+      const result = orderManager.countMenusTypeOf(type);
+
+      expect(result).toBe(expected);
+    });
+  });
 });
 
 describe('예외 테스트', () => {
