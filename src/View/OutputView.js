@@ -4,6 +4,11 @@ import COMMON from '../constants/common.js';
 import { formatCount, formatMinusMoney, formatMoney } from '../utils/format.js';
 
 const OutputView = {
+  printGuidePreview(date) {
+    const { beforeDate, afterDate } = OUTPUT.guide.preview;
+    Console.print(beforeDate + date + afterDate);
+  },
+
   printOrderedMenu(order) {
     Console.print(OUTPUT.title.orderedMenu);
 
