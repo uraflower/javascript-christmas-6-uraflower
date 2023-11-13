@@ -29,6 +29,4 @@ function isPositiveInteger(number) {
   );
 }
 
-export {
-  isUndefined, isEmpty, isInteger, isPositiveInteger, isInRange,
-};
+export { isUndefined, isEmpty, isInteger, isPositiveInteger, isInRange };

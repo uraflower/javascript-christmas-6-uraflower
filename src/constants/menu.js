@@ -15,7 +15,6 @@ const MENU = Object.freeze({
     name: '타파스',
     type: TYPE.appetizer,
     price: 5500,
-
   }),
   시저샐러드: Object.freeze({
     name: '시저샐러드',

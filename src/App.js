@@ -58,7 +58,8 @@ class App {
     OutputView.printGiftMenu(this.#gift.getGiftMenu());
     OutputView.printBenefitDetails(this.#benefit);
     OutputView.printTotalAmountOfBenefit(this.#totalAmountOfBenefit);
-    const totalAmountToPay = this.#totalAmountOfOrder - this.#discount.getTotalAmountOfDiscount();
+    const totalAmountToPay =
+      this.#totalAmountOfOrder - this.#discount.getTotalAmountOfDiscount();
     OutputView.printTotalAmountToPay(totalAmountToPay);
     OutputView.printBadge(this.#badge);
   }
@@ -73,7 +74,11 @@ class App {
 
   #applyBenefit() {
     const isEligibleForBenefit = this.#isEligibleForBenefit();
-    this.#discount = new Discount(isEligibleForBenefit, this.#visitDate, this.#orderManager);
+    this.#discount = new Discount(
+      isEligibleForBenefit,
+      this.#visitDate,
+      this.#orderManager,
+    );
     this.#gift = new Gift(this.#totalAmountOfOrder);
     this.#setBenefit(isEligibleForBenefit);
     this.#setTotalAmountOfBenefit();

@@ -7,7 +7,11 @@ class Discount {
   #detail;
 
   constructor(isEligibleForDiscount, visitDate, orderManager) {
-    this.#detail = this.#setDiscount(isEligibleForDiscount, visitDate, orderManager);
+    this.#detail = this.#setDiscount(
+      isEligibleForDiscount,
+      visitDate,
+      orderManager,
+    );
   }
 
   get detail() {
