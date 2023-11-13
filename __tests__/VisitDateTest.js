@@ -61,6 +61,21 @@ describe('방문 날짜 테스트', () => {
         },
       );
     });
+
+    describe('평일/주말 테스트', () => {
+      describe('방문 날짜의 날이 ', () => {
+        test.each([
+          ['1', '주말', true],
+          ['3', '평일', false],
+        ])('%d일이면 %s이다', (date, _, expected) => {
+          const visitDate = new VisitDate(date);
+
+          const result = visitDate.isWeekend();
+
+          expect(result).toBe(expected);
+        });
+      });
+    });
   });
 
   describe('예외 테스트', () => {
