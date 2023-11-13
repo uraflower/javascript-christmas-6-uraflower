@@ -30,6 +30,18 @@ describe('기능 테스트', () => {
       expect(result).toBe(expected);
     });
   });
+
+  describe('할인 전 총주문 금액 계산 테스트', () => {
+    test.each([
+      ['타파스-1,제로콜라-1', 8500],
+      ['티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1', 142000],
+    ])('"%s" 주문 시 할인 전 총주문 금액은 %d원이다', (input, expected) => {
+      const orderManager = new OrderManager(input);
+      const result = orderManager.getTotalAmountOfOrder();
+
+      expect(result).toStrictEqual(expected);
+    });
+  });
 });
 
 describe('예외 테스트', () => {
