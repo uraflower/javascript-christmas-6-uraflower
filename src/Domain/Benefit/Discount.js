@@ -5,13 +5,10 @@ import TYPE from '../../constants/order/type.js';
 import BENEFIT_CONDITIONS from '../../constants/benefit/benefitConditions.js';
 
 class Discount {
-  #isDiscountTarget = false;
-
   #detail = {};
 
   constructor(visitDate, orderManager) {
-    this.#checkEligibility(orderManager);
-    if (this.#isDiscountTarget) {
+    if (this.#isDiscountTarget(orderManager)) {
       this.#setDiscount(visitDate, orderManager);
     }
   }
@@ -20,9 +17,9 @@ class Discount {
     return this.#detail;
   }
 
-  #checkEligibility(orderManager) {
+  #isDiscountTarget(orderManager) {
     const orderAmount = orderManager.getTotalAmountOfOrder();
-    this.#isDiscountTarget = orderAmount >= BENEFIT_CONDITIONS.minAmountOfOrder;
+    return orderAmount >= BENEFIT_CONDITIONS.minAmountOfOrder;
   }
 
   #setDiscount(visitDate, orderManager) {
