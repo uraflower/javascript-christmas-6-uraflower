@@ -1,13 +1,35 @@
+import BENEFIT_CONDITIONS from '../../constants/benefit/benefitConditions.js';
 import GIFT_CONDITIONS from '../../constants/benefit/giftConditions.js';
+import EVENT_DATE from '../../constants/date/eventDate.js';
 
 class Gift {
-  #giftInfo;
+  #isGiftTarget = false;
 
-  constructor(totalAmountOfOrder) {
-    this.#giftInfo = this.#getGift(totalAmountOfOrder);
+  #giftInfo = null;
+
+  constructor(visitDate, orderManager) {
+    this.#checkEligibility(orderManager);
+    if (this.#isGiftTarget) {
+      this.#giftInfo = this.#getGift(visitDate, orderManager);
+    }
   }
 
-  #getGift(amount) {
+  #checkEligibility(orderManager) {
+    const orderAmount = orderManager.getTotalAmountOfOrder();
+    this.#isGiftTarget = orderAmount >= BENEFIT_CONDITIONS.minAmountOfOrder;
+  }
+
+  #isEventPeriod(visitDate) {
+    const { start, end } = EVENT_DATE.period.otherEvent;
+    return visitDate.isDateInPeriod(start, end);
+  }
+
+  #getGift(visitDate, orderManager) {
+    if (!this.#isEventPeriod(visitDate)) {
+      return null;
+    }
+
+    const amount = orderManager.getTotalAmountOfOrder();
     const matchedCondition = GIFT_CONDITIONS.find(
       (currentCondition) => amount >= currentCondition.minAmountOfOrder,
     );
