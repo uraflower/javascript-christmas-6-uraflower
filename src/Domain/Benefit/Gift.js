@@ -9,7 +9,7 @@ class Gift {
 
   #getGift(amount) {
     const matchedCondition = GIFT_CONDITIONS.find(
-      (currentCondition) => amount >= currentCondition.minAmountForGift,
+      (currentCondition) => amount >= currentCondition.minAmountOfOrder,
     );
 
     if (!matchedCondition) {

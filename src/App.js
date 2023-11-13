@@ -70,7 +70,7 @@ class App {
   }
 
   #isEligibleForBenefit() {
-    return this.#totalAmountOfOrder >= BENEFIT_CONDITIONS.minAmountForBenefit;
+    return this.#totalAmountOfOrder >= BENEFIT_CONDITIONS.minAmountOfOrder;
   }
 
   #applyBenefit() {
