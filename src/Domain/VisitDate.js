@@ -1,8 +1,11 @@
 import CustomError from '../errors/CustomError.js';
-import COMMON from '../constants/common.js';
 import EVENT_DATE from '../constants/date/eventDate.js';
 import ERROR from '../constants/message/error.js';
-import { isEmpty, isInRange, isInteger } from '../utils/validate.js';
+import {
+  isInRange,
+  isPositiveInteger,
+  isStartWithZero,
+} from '../utils/validate.js';
 import DAY from '../constants/date/day.js';
 
 class VisitDate {
@@ -17,11 +20,9 @@ class VisitDate {
     const { start, end } = EVENT_DATE.period.visitable;
 
     if (
-      isEmpty(date) ||
-      date.includes(COMMON.whitespace) ||
-      date.includes(COMMON.dot) ||
-      !isInteger(date) ||
-      !isInRange(date, start, end)
+      !isPositiveInteger(date) ||
+      !isInRange(date, start, end) ||
+      isStartWithZero(date)
     ) {
       throw new CustomError(ERROR.invalidDate);
     }

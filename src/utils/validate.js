@@ -17,6 +17,9 @@ function isInRange(number, min, max) {
   return numericNumber >= min && numericNumber <= max;
 }
 
+function isStartWithZero(number) {
+  return number.trim()[0] === '0';
+}
 function isPositiveInteger(number) {
   return (
     !isUndefined(number) &&
@@ -29,4 +32,11 @@ function isPositiveInteger(number) {
   );
 }
 
-export { isUndefined, isEmpty, isInteger, isPositiveInteger, isInRange };
+export {
+  isUndefined,
+  isEmpty,
+  isInteger,
+  isPositiveInteger,
+  isInRange,
+  isStartWithZero,
+};
