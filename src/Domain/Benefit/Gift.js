@@ -34,21 +34,23 @@ class Gift {
       (currentCondition) => amount >= currentCondition.minAmountOfOrder,
     );
 
-    if (!matchedCondition) {
-      return null;
-    }
-
-    const { gift, number } = matchedCondition;
-    return { gift, number };
+    return matchedCondition ? matchedCondition.gift : null;
   }
 
-  getGiftMenu() {
+  get name() {
     if (!this.#giftInfo) {
       return null;
     }
 
-    const { gift, number } = this.#giftInfo;
-    return { menu: gift.name, number };
+    return this.#giftInfo.name;
+  }
+
+  get number() {
+    if (!this.#giftInfo) {
+      return null;
+    }
+
+    return this.#giftInfo.number;
   }
 
   getTotalAmountOfGift() {
@@ -56,8 +58,8 @@ class Gift {
       return 0;
     }
 
-    const { gift, number } = this.#giftInfo;
-    return gift.price * number;
+    const { price, number } = this.#giftInfo;
+    return price * number;
   }
 }
 

@@ -29,17 +29,15 @@ const OutputView = {
     Console.print(formattedAmount);
   },
 
-  printGiftMenu(gift) {
+  printGiftMenu(name, number) {
     Console.print(OUTPUT.title.giftMenu);
 
-    if (!gift) {
+    if (!name || !number) {
       this.printNone();
       return;
     }
-
-    const { menu, number } = gift;
     const cnt = formatCount(number);
-    Console.print(menu + COMMON.whitespace + cnt);
+    Console.print(name + COMMON.whitespace + cnt);
   },
 
   printBenefitDetails(benefit) {

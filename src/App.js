@@ -56,7 +56,7 @@ class App {
   }
 
   #printAfterCalculateBenefit() {
-    OutputView.printGiftMenu(this.#gift.getGiftMenu());
+    OutputView.printGiftMenu(this.#gift.name, this.#gift.number);
     OutputView.printBenefitDetails(this.#benefit);
     OutputView.printTotalAmountOfBenefit(this.#totalAmountOfBenefit);
     const totalAmountToPay =
