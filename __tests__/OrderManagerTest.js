@@ -1,5 +1,22 @@
 import OrderManager from '../src/Domain/OrderManager';
 
+describe('기능 테스트', () => {
+  test('주문을 입력하면 주문한 메뉴와 메뉴 개수를 구분한다', () => {
+    const input = '티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1';
+    const expected = {
+      티본스테이크: 1,
+      바비큐립: 1,
+      초코케이크: 2,
+      제로콜라: 1,
+    };
+
+    const orderManager = new OrderManager(input);
+    const result = orderManager.order;
+
+    expect(result).toStrictEqual(expected);
+  });
+});
+
 describe('예외 테스트', () => {
   describe('입력 받은 주문이 유효하지 않음을 알린다', () => {
     test.each([
