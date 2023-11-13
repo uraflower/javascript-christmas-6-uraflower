@@ -29,4 +29,13 @@ describe('예외 테스트', () => {
       });
     });
   });
+
+  test('음료만 주문 시 주문할 수 없음을 알린다', () => {
+    const DRINK_ONLY_MESSAGE = '[ERROR] 음료만 주문 시, 주문할 수 없습니다.';
+    const input = '레드와인-1,샴페인-2';
+
+    expect(() => {
+      new OrderManager(input);
+    }).toThrow(DRINK_ONLY_MESSAGE);
+  });
 });
