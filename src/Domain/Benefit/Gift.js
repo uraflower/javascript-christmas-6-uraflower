@@ -8,16 +8,16 @@ class Gift {
   }
 
   #getGift(amount) {
-    let matchedGift = null;
+    const matchedCondition = GIFT_CONDITIONS.find(
+      (currentCondition) => amount >= currentCondition.minAmountForGift,
+    );
 
-    GIFT_CONDITIONS.forEach((currentCondition) => {
-      if (amount >= currentCondition.minAmountForGift) {
-        const { gift, number } = currentCondition;
-        matchedGift = { gift, number };
-      }
-    });
+    if (!matchedCondition) {
+      return null;
+    }
 
-    return matchedGift;
+    const { gift, number } = matchedCondition;
+    return { gift, number };
   }
 
   getGiftMenu() {
