@@ -38,4 +38,14 @@ describe('예외 테스트', () => {
       new OrderManager(input);
     }).toThrow(DRINK_ONLY_MESSAGE);
   });
+
+  test('한 번에 20개 넘게 주문 시 최대 20개만 주문 가능함을 알린다', () => {
+    const MAX_MENU_LIMIT_MESSAGE =
+      '[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.';
+    const input = '티본스테이크-20,샴페인-1';
+
+    expect(() => {
+      new OrderManager(input);
+    }).toThrow(MAX_MENU_LIMIT_MESSAGE);
+  });
 });
