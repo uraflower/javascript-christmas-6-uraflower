@@ -75,11 +75,7 @@ class App {
 
   #applyBenefit() {
     const isEligibleForBenefit = this.#isEligibleForBenefit();
-    this.#discount = new Discount(
-      isEligibleForBenefit,
-      this.#visitDate,
-      this.#orderManager,
-    );
+    this.#discount = new Discount(this.#visitDate, this.#orderManager);
     this.#gift = new Gift(this.#totalAmountOfOrder);
     this.#setBenefit(isEligibleForBenefit);
     this.#setTotalAmountOfBenefit();
