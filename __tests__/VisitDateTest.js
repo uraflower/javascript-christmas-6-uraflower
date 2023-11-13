@@ -10,6 +10,32 @@ describe('방문 날짜 테스트', () => {
 
       expect(visitDate.date).toBe(expectedDate);
     });
+
+    describe('이벤트 달력에 표시된 별 날짜 테스트', () => {
+      describe('방문 날짜가', () => {
+        test.each(['3', '10', '17', '24', '25', '31'])(
+          '%s이면 별 날짜이다',
+          (date) => {
+            const visitDate = new VisitDate(date);
+
+            const result = visitDate.isStarredDate();
+
+            expect(result).toBeTruthy();
+          },
+        );
+
+        test.each(['1', '13', '20', '30'])(
+          '%s이면 별 날짜가 아니다',
+          (date) => {
+            const visitDate = new VisitDate(date);
+
+            const result = visitDate.isStarredDate();
+
+            expect(result).toBeFalsy();
+          },
+        );
+      });
+    });
   });
 
   describe('예외 테스트', () => {
