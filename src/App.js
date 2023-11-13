@@ -5,9 +5,9 @@ import VisitDate from './Domain/VisitDate.js';
 import tryUntilValid from './utils/tryUntilValid.js';
 import Gift from './Domain/Benefit/Gift.js';
 import Discount from './Domain/Benefit/Discount.js';
-import ORDER from './constants/order.js';
 import Badge from './Domain/Benefit/Badge.js';
-import BENEFIT from './constants/benefit.js';
+import BENEFIT from './constants/benefit/benefit.js';
+import BENEFIT_CONDITIONS from './constants/benefit/benefitConditions.js';
 
 class App {
   #visitDate;
@@ -70,7 +70,7 @@ class App {
   }
 
   #isEligibleForBenefit() {
-    return this.#totalAmountOfOrder >= ORDER.minAmountForBenefit;
+    return this.#totalAmountOfOrder >= BENEFIT_CONDITIONS.minAmountForBenefit;
   }
 
   #applyBenefit() {

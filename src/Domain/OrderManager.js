@@ -1,7 +1,8 @@
 import COMMON from '../constants/common.js';
-import { MENU, TYPE } from '../constants/menu.js';
+import MENU from '../constants/order/menu.js';
+import TYPE from '../constants/order/type.js';
 import ERROR from '../constants/message/error.js';
-import ORDER from '../constants/order.js';
+import ORDER_CONDITIONS from '../constants/order/orderConditions.js';
 import CustomError from '../errors/CustomError.js';
 import { split } from '../utils/format.js';
 import { isPositiveInteger } from '../utils/validate.js';
@@ -83,7 +84,7 @@ class OrderManager {
     const eachNumberOfMenus = Object.values(order);
     const sum = eachNumberOfMenus.reduce((acc, number) => acc + number, 0);
 
-    if (sum > ORDER.maxMenuLimit) {
+    if (sum > ORDER_CONDITIONS.maxMenuLimit) {
       throw new CustomError(ERROR.maxMenuLimit);
     }
   }

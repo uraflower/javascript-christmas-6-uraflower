@@ -1,4 +1,4 @@
-import GIFT_CONDITIONS from '../../constants/giftConditions.js';
+import GIFT_CONDITIONS from '../../constants/benefit/giftConditions.js';
 
 class Gift {
   #giftInfo;

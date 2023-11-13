@@ -1,4 +1,4 @@
-import { MENU } from './menu.js';
+import MENU from '../order/menu.js';
 
 const GIFT_CONDITIONS = Object.freeze([
   Object.freeze({

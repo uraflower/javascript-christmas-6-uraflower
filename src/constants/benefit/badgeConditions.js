@@ -1,8 +1,4 @@
-const BADGE = Object.freeze({
-  santa: '산타',
-  tree: '트리',
-  star: '별',
-});
+import BADGE from './badge.js';
 
 const BADGE_CONDITIONS = Object.freeze([
   Object.freeze({

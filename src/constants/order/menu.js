@@ -1,9 +1,4 @@
-const TYPE = Object.freeze({
-  appetizer: 'appetizer',
-  main: 'main',
-  dessert: 'dessert',
-  drink: 'drink',
-});
+import TYPE from './type.js';
 
 const MENU = Object.freeze({
   양송이수프: Object.freeze({
@@ -71,4 +66,4 @@ const MENU = Object.freeze({
   }),
 });
 
-export { TYPE, MENU };
+export default MENU;

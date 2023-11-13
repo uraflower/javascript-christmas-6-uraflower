@@ -1,7 +1,7 @@
-import BENEFIT from '../../constants/benefit.js';
+import BENEFIT from '../../constants/benefit/benefit.js';
 import EVENT_DATE from '../../constants/date/eventDate.js';
-import DISCOUNT from '../../constants/discount.js';
-import { TYPE } from '../../constants/menu.js';
+import DISCOUNT from '../../constants/benefit/discount.js';
+import TYPE from '../../constants/order/type.js';
 
 class Discount {
   #detail;

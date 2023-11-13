@@ -1,4 +1,4 @@
-import BENEFIT from '../benefit.js';
+import BENEFIT from '../benefit/benefit.js';
 
 const OUTPUT = Object.freeze({
   guide: Object.freeze({

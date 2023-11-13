@@ -1,4 +1,4 @@
-import BADGE_CONDITIONS from '../../constants/badgeConditions.js';
+import BADGE_CONDITIONS from '../../constants/benefit/badgeConditions.js';
 
 const Badge = {
   getBadge(amount) {
