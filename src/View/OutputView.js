@@ -82,7 +82,7 @@ const OutputView = {
   },
 
   printNone() {
-    Console.print('없음');
+    Console.print(OUTPUT.content.none);
   },
 
   printError(message) {

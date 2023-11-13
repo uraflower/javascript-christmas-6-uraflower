@@ -22,6 +22,7 @@ const OUTPUT = Object.freeze({
       [BENEFIT.special]: '특별 할인:',
       [BENEFIT.gift]: '증정 이벤트:',
     }),
+    none: '없음',
   }),
 });
 
