@@ -1,6 +1,17 @@
 import VisitDate from '../src/Domain/VisitDate';
 
 describe('방문 날짜 테스트', () => {
+  describe('기능 테스트', () => {
+    test('입력 값이 3이면 방문 날짜의 날은 3일이다', () => {
+      const date = '3';
+      const expectedDate = 3;
+
+      const visitDate = new VisitDate(date);
+
+      expect(visitDate.date).toBe(expectedDate);
+    });
+  });
+
   describe('예외 테스트', () => {
     describe('입력 받은 날짜가 유효하지 않은 날짜임을 알린다.', () => {
       test.each([
