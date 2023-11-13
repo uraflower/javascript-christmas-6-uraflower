@@ -5,7 +5,7 @@ import ERROR from '../constants/message/error.js';
 import ORDER_CONDITIONS from '../constants/order/orderConditions.js';
 import CustomError from '../errors/CustomError.js';
 import { split } from '../utils/format.js';
-import { isPositiveInteger } from '../utils/validate.js';
+import { isPositiveInteger, isStartWithZero } from '../utils/validate.js';
 
 class OrderManager {
   #order;
@@ -58,7 +58,8 @@ class OrderManager {
     if (
       !isPositiveInteger(number) ||
       !Object.hasOwn(MENU, menu) ||
-      Object.hasOwn(order, menu)
+      Object.hasOwn(order, menu) ||
+      isStartWithZero(number)
     ) {
       throw new CustomError(ERROR.invalidOrder);
     }
