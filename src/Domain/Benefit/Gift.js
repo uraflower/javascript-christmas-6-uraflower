@@ -1,10 +1,10 @@
 import GIFT_CONDITIONS from '../../constants/giftConditions.js';
 
 class Gift {
-  #gift;
+  #giftInfo;
 
   constructor(totalAmountOfOrder) {
-    this.#gift = this.#getGift(totalAmountOfOrder);
+    this.#giftInfo = this.#getGift(totalAmountOfOrder);
   }
 
   #getGift(amount) {
@@ -21,20 +21,20 @@ class Gift {
   }
 
   getGiftMenu() {
-    if (!this.#gift) {
+    if (!this.#giftInfo) {
       return null;
     }
 
-    const { gift, number } = this.#gift;
+    const { gift, number } = this.#giftInfo;
     return { menu: gift.name, number };
   }
 
   getTotalAmountOfGift() {
-    if (!this.#gift) {
+    if (!this.#giftInfo) {
       return 0;
     }
 
-    const { gift, number } = this.#gift;
+    const { gift, number } = this.#giftInfo;
     return gift.price * number;
   }
 }
