@@ -42,6 +42,7 @@ class App {
   }
 
   async #doBeforeCalculateBenefit() {
+    OutputView.printGreeting();
     await this.#setVisitDate();
     await this.#setOrderManager();
     OutputView.printGuidePreview(this.#visitDate.date);
