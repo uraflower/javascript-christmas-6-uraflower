@@ -2,40 +2,36 @@ import BENEFIT from '../../constants/benefit/benefit.js';
 import EVENT_DATE from '../../constants/date/eventDate.js';
 import DISCOUNT from '../../constants/benefit/discount.js';
 import TYPE from '../../constants/order/type.js';
-import BENEFIT_CONDITIONS from '../../constants/benefit/benefitConditions.js';
 
 class Discount {
-  #isDiscountTarget;
-
   #detail = {};
 
-  constructor(visitDate, orderManager) {
-    this.#setIsDiscountTarget(orderManager);
-    this.#setDiscount(visitDate, orderManager);
+  constructor() {
+    this.#initializeDetail();
   }
 
   get detail() {
     return this.#detail;
   }
 
-  #setIsDiscountTarget(orderManager) {
-    const orderAmount = orderManager.getTotalAmountOfOrder();
-    this.#isDiscountTarget = orderAmount >= BENEFIT_CONDITIONS.minAmountOfOrder;
+  #initializeDetail() {
+    this.#detail[BENEFIT.christmas] = 0;
+    this.#detail[BENEFIT.weekday] = 0;
+    this.#detail[BENEFIT.weekend] = 0;
+    this.#detail[BENEFIT.special] = 0;
   }
 
-  #setDiscount(visitDate, orderManager) {
-    this.#detail[BENEFIT.christmas] = this.#isDiscountTarget
-      ? this.#discountChristmas(visitDate)
-      : DISCOUNT.zero;
-    this.#detail[BENEFIT.weekday] = this.#isDiscountTarget
-      ? this.#discountWeekday(visitDate, orderManager)
-      : DISCOUNT.zero;
-    this.#detail[BENEFIT.weekend] = this.#isDiscountTarget
-      ? this.#discountWeekend(visitDate, orderManager)
-      : DISCOUNT.zero;
-    this.#detail[BENEFIT.special] = this.#isDiscountTarget
-      ? this.#discountSpecial(visitDate)
-      : DISCOUNT.zero;
+  setDiscount(visitDate, orderManager) {
+    this.#detail[BENEFIT.christmas] = this.#discountChristmas(visitDate);
+    this.#detail[BENEFIT.weekday] = this.#discountWeekday(
+      visitDate,
+      orderManager,
+    );
+    this.#detail[BENEFIT.weekend] = this.#discountWeekend(
+      visitDate,
+      orderManager,
+    );
+    this.#detail[BENEFIT.special] = this.#discountSpecial(visitDate);
   }
 
   #discountChristmas(visitDate) {
@@ -49,33 +45,28 @@ class Discount {
   }
 
   #discountWeekday(visitDate, orderManager) {
-    const { start, end } = EVENT_DATE.period.otherEvent;
-    const { dessert } = TYPE;
-
-    if (!visitDate.isWeekend() && visitDate.isDateInPeriod(start, end)) {
-      const cnt = orderManager.countMenusTypeOf(dessert);
+    if (!visitDate.isWeekend()) {
+      const cnt = orderManager.countMenusTypeOf(TYPE.dessert);
       return cnt * DISCOUNT.weekdayRatio;
     }
+
     return DISCOUNT.zero;
   }
 
   #discountWeekend(visitDate, orderManager) {
-    const { start, end } = EVENT_DATE.period.otherEvent;
-    const { main } = TYPE;
-
-    if (visitDate.isWeekend() && visitDate.isDateInPeriod(start, end)) {
-      const cnt = orderManager.countMenusTypeOf(main);
+    if (visitDate.isWeekend()) {
+      const cnt = orderManager.countMenusTypeOf(TYPE.main);
       return cnt * DISCOUNT.weekendRatio;
     }
+
     return DISCOUNT.zero;
   }
 
   #discountSpecial(visitDate) {
-    const { start, end } = EVENT_DATE.period.otherEvent;
-
-    if (visitDate.isStarredDate() && visitDate.isDateInPeriod(start, end)) {
+    if (visitDate.isStarredDate()) {
       return DISCOUNT.special;
     }
+
     return DISCOUNT.zero;
   }
 
