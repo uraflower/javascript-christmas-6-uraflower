@@ -5,34 +5,37 @@ import TYPE from '../../constants/order/type.js';
 import BENEFIT_CONDITIONS from '../../constants/benefit/benefitConditions.js';
 
 class Discount {
+  #isDiscountTarget;
+
   #detail = {};
 
   constructor(visitDate, orderManager) {
-    if (this.#isDiscountTarget(orderManager)) {
-      this.#setDiscount(visitDate, orderManager);
-    }
+    this.#setIsDiscountTarget(orderManager);
+    this.#setDiscount(visitDate, orderManager);
   }
 
   get detail() {
     return this.#detail;
   }
 
-  #isDiscountTarget(orderManager) {
+  #setIsDiscountTarget(orderManager) {
     const orderAmount = orderManager.getTotalAmountOfOrder();
-    return orderAmount >= BENEFIT_CONDITIONS.minAmountOfOrder;
+    this.#isDiscountTarget = orderAmount >= BENEFIT_CONDITIONS.minAmountOfOrder;
   }
 
   #setDiscount(visitDate, orderManager) {
-    this.#detail[BENEFIT.christmas] = this.#discountChristmas(visitDate);
-    this.#detail[BENEFIT.weekday] = this.#discountWeekday(
-      visitDate,
-      orderManager,
-    );
-    this.#detail[BENEFIT.weekend] = this.#discountWeekend(
-      visitDate,
-      orderManager,
-    );
-    this.#detail[BENEFIT.special] = this.#discountSpecial(visitDate);
+    this.#detail[BENEFIT.christmas] = this.#isDiscountTarget
+      ? this.#discountChristmas(visitDate)
+      : DISCOUNT.zero;
+    this.#detail[BENEFIT.weekday] = this.#isDiscountTarget
+      ? this.#discountWeekday(visitDate, orderManager)
+      : DISCOUNT.zero;
+    this.#detail[BENEFIT.weekend] = this.#isDiscountTarget
+      ? this.#discountWeekend(visitDate, orderManager)
+      : DISCOUNT.zero;
+    this.#detail[BENEFIT.special] = this.#isDiscountTarget
+      ? this.#discountSpecial(visitDate)
+      : DISCOUNT.zero;
   }
 
   #discountChristmas(visitDate) {
