@@ -8,6 +8,7 @@ const AVAILABLE_ORDER = '타파스-1,바비큐립-2,초코케이크-3,샴페인-
 
 describe('크리스마스 디데이 할인 테스트', () => {
   test.each([
+    ['25', UNAVAILABLE_ORDER, 0],
     ['31', AVAILABLE_ORDER, 0],
     ['25', AVAILABLE_ORDER, 3400],
   ])(
@@ -26,6 +27,7 @@ describe('크리스마스 디데이 할인 테스트', () => {
 
 describe('평일 할인 테스트', () => {
   test.each([
+    ['25', UNAVAILABLE_ORDER, 0],
     ['1', AVAILABLE_ORDER, 0],
     ['25', AVAILABLE_ORDER, 2023 * 3],
   ])(
@@ -44,6 +46,7 @@ describe('평일 할인 테스트', () => {
 
 describe('주말 할인 테스트', () => {
   test.each([
+    ['1', UNAVAILABLE_ORDER, 0],
     ['25', AVAILABLE_ORDER, 0],
     ['1', AVAILABLE_ORDER, 2023 * 2],
   ])(
@@ -62,6 +65,7 @@ describe('주말 할인 테스트', () => {
 
 describe('특별 할인 테스트', () => {
   test.each([
+    ['25', UNAVAILABLE_ORDER, 0],
     ['1', AVAILABLE_ORDER, 0],
     ['25', AVAILABLE_ORDER, 1000],
   ])(
