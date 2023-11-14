@@ -41,3 +41,21 @@ describe('평일 할인 테스트', () => {
     },
   );
 });
+
+describe('주말 할인 테스트', () => {
+  test.each([
+    ['25', AVAILABLE_ORDER, 0],
+    ['1', AVAILABLE_ORDER, 2023 * 2],
+  ])(
+    '방문 날짜가 %s일이고 "%s" 주문 시 %d원 할인한다',
+    (date, order, expected) => {
+      const visitDate = new VisitDate(date);
+      const orderManager = new OrderManager(order);
+
+      const discount = new Discount(visitDate, orderManager);
+      const result = discount.detail[BENEFIT.weekend];
+
+      expect(result).toBe(expected);
+    },
+  );
+});
