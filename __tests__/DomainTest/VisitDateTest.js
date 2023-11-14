@@ -1,4 +1,4 @@
-import VisitDate from '../src/Domain/VisitDate';
+import VisitDate from '../../src/Domain/VisitDate';
 
 describe('기능 테스트', () => {
   test('유효한 날짜를 입력하면 방문 날짜를 생성한다', () => {

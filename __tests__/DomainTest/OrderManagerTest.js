@@ -1,4 +1,4 @@
-import OrderManager from '../src/Domain/OrderManager';
+import OrderManager from '../../src/Domain/OrderManager';
 
 describe('기능 테스트', () => {
   test('주문을 입력하면 주문한 메뉴와 메뉴 개수를 구분한다', () => {

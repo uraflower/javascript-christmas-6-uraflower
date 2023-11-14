@@ -1,7 +1,7 @@
-import Discount from '../src/Domain/Benefit/Discount';
-import OrderManager from '../src/Domain/OrderManager';
-import VisitDate from '../src/Domain/VisitDate.js';
-import BENEFIT from '../src/constants/benefit/benefit';
+import Discount from '../../src/Domain/Benefit/Discount';
+import OrderManager from '../../src/Domain/OrderManager';
+import VisitDate from '../../src/Domain/VisitDate.js';
+import BENEFIT from '../../src/constants/benefit/benefit';
 
 const ORDER = '타파스-1,바비큐립-2,초코케이크-3,샴페인-4';
 

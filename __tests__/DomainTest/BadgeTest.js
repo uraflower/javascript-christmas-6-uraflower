@@ -1,4 +1,4 @@
-import Badge from '../src/Domain/Benefit/Badge.js';
+import Badge from '../../src/Domain/Benefit/Badge.js';
 
 describe('배지 전달 테스트', () => {
   test.each([
