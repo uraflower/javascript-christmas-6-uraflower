@@ -23,3 +23,17 @@ describe('증정 메뉴 정보 전달 테스트', () => {
     expect(gift.number).toBeNull();
   });
 });
+
+describe('증정 혜택 금액 계산 테스트', () => {
+  test.each([
+    [120000, 25000],
+    [10000, 0],
+  ])('%d원 주문 시 증정 혜택 금액은 %d원이다', (orderAmount, expected) => {
+    const gift = new Gift();
+    gift.setGift(orderAmount);
+
+    const result = gift.getTotalAmountOfGift();
+
+    expect(result).toBe(expected);
+  });
+});
