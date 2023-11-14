@@ -1,9 +1,9 @@
-import InputView from '../View/InputView';
-import OutputView from '../View/OutputView';
-import tryUntilValid from '../utils/tryUntilValid';
+import InputView from '../View/InputView.js';
+import OutputView from '../View/OutputView.js';
+import tryUntilValid from '../utils/tryUntilValid.js';
 import BenefitManager from './Benefit/BenefitManager.js';
-import OrderManager from './OrderManager';
-import VisitDate from './VisitDate';
+import OrderManager from './OrderManager.js';
+import VisitDate from './VisitDate.js';
 
 class EventPlanner {
   #visitDate;
