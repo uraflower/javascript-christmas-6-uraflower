@@ -6,6 +6,9 @@ describe('양의 정수 판별 테스트', () => {
 
   test.each([
     ['1234', TRUE_STRING, true],
+    [undefined, FALSE_STRING, false],
+    ['', FALSE_STRING, false],
+    [' ', FALSE_STRING, false],
     ['1.0', FALSE_STRING, false],
     ['5.0000000000000001', FALSE_STRING, false],
     ['1일', FALSE_STRING, false],
