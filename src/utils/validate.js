@@ -28,7 +28,8 @@ function isPositiveInteger(number) {
     !number.includes(COMMON.dot) &&
     Number(number) > 0 &&
     Number(number) <= Number.MAX_SAFE_INTEGER &&
-    isInteger(number)
+    isInteger(number) &&
+    !isStartWithZero(number)
   );
 }
 
