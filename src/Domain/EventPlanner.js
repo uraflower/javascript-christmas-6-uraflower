@@ -17,6 +17,8 @@ class EventPlanner {
   }
 
   async plan() {
+    OutputView.printGreeting();
+
     await this.#takeReservation();
     this.#printReservationInfo();
 
@@ -25,6 +27,7 @@ class EventPlanner {
   }
 
   #printReservationInfo() {
+    OutputView.printGuidePreview(this.#visitDate.date);
     OutputView.printOrderedMenu(this.#orderManager.order);
     OutputView.printTotalAmountOfOrder(
       this.#orderManager.getTotalAmountOfOrder(),
@@ -32,12 +35,8 @@ class EventPlanner {
   }
 
   async #takeReservation() {
-    OutputView.printGreeting();
-
     await this.#setVisitDate();
     await this.#setOrderManager();
-
-    OutputView.printGuidePreview(this.#visitDate.date);
   }
 
   async #setVisitDate() {
