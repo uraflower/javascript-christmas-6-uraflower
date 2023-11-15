@@ -26,17 +26,17 @@ class EventPlanner {
     this.#benefitManager.printBenefit(this.#orderManager);
   }
 
+  async #takeReservation() {
+    await this.#setVisitDate();
+    await this.#setOrderManager();
+  }
+
   #printReservationInfo() {
     OutputView.printGuidePreview(this.#visitDate.date);
     OutputView.printOrderedMenu(this.#orderManager.order);
     OutputView.printTotalAmountOfOrder(
       this.#orderManager.getTotalAmountOfOrder(),
     );
-  }
-
-  async #takeReservation() {
-    await this.#setVisitDate();
-    await this.#setOrderManager();
   }
 
   async #setVisitDate() {
