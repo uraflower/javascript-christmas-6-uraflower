@@ -22,13 +22,16 @@ describe('기능 테스트', () => {
       ['타파스-1,바비큐립-2,초코케이크-3,샴페인-4', 'main', 2],
       ['타파스-1,바비큐립-2,초코케이크-3,샴페인-4', 'dessert', 3],
       ['타파스-1,바비큐립-2,초코케이크-3,샴페인-4', 'drink', 4],
-    ])('"%s"을 주문하면 "%s"의 개수는 %d개이다', (input, type, expected) => {
-      const orderManager = new OrderManager(input);
+    ])(
+      '"%s"을 주문하면 "%s" 메뉴의 개수는 %d개이다',
+      (input, type, expected) => {
+        const orderManager = new OrderManager(input);
 
-      const result = orderManager.countMenusTypeOf(type);
+        const result = orderManager.countMenusTypeOf(type);
 
-      expect(result).toBe(expected);
-    });
+        expect(result).toBe(expected);
+      },
+    );
   });
 
   describe('할인 전 총주문 금액 계산 테스트', () => {
