@@ -70,6 +70,55 @@
 node ./src/index.js
 ```
 
+# 🏃‍♂️ 구현 내용
+
+## 🗂 핵심 기능 담당 파일 소개
+
+```
+📁root/src/Domain
+├─ Benefit
+│  ├─ Badge.js
+│  ├─ BenefitManager.js
+│  ├─ Discount.js
+│  └─ Gift.js
+├─ EventPlanner.js
+├─ OrderManager.js
+└─ VisitDate.js
+```
+
+### Domain
+
+- **EventPlanner**
+  - 방문 날짜와 주문을 입력받도록 제어. 입력 값을 `VisitDate`, `OrderManager`에 전달
+  - 주문 메뉴 및 금액을 출력하도록 제어
+  - `BenefitManager`를 불러 혜택을 적용하도록 제어
+  - `BenefitManager`를 불러 적용한 혜택 내용을 출력하도록 제어
+- **VisitDate**
+  - 입력 받은 방문 날짜 검증
+  - 방문 날짜 저장
+  - 방문 날짜 관련 작업 수행 (ex. 방문 날짜가 주말인지 확인)
+- **OrderManager**
+  - 입력 받은 주문 검증
+  - 주문을 메뉴와 개수로 나누어 저장
+  - 주문 관련 작업 수행 (ex. 총주문 금액 계산)
+
+### Domain/Benefit
+
+- **BenefitManager**
+  - 혜택 대상인지 판별
+  - `Discount`, `Gift`, `Badge`를 불러 혜택 적용
+  - 적용한 혜택 내용을 출력하도록 제어
+- **Discount**
+  - 각 할인 기준을 만족하는지 판별
+  - 할인 이벤트로 할인 받은 금액 저장
+  - 할인 혜택 금액 계산
+- **Gift**
+  - 증정 기준을 충족하는지 판별
+  - 증정할 메뉴, 증정 메뉴의 개수 및 가격 저장
+  - 증정 혜택 금액 계산
+- **Badge**
+  - 배지 증정 기준을 충족하는지 판별 후 증정할 배지 전달
+
 # 👩‍💻 테스트
 
 ### 테스트 코드
