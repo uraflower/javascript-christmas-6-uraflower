@@ -83,6 +83,8 @@ npm test
 
 ## ✔ 방문 날짜
 
+![December Calendar](../image.png)
+
 ### 날짜 생성
 
 - [x] 입력 받은 날짜를 가지고 방문 날짜를 생성한다. (ex. `2023년 12월 x일`)
